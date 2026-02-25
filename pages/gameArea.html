@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>The-Last-Stand</title>
+    <link rel="stylesheet" href="/styles.css">
+</head>
+
+<body>
+    <div id="HUD">
+        <div id="hudPlayerStats">
+            <div>Hero:</div>
+            <div id="heroName">name</div>
+
+            <div>Lv:</div>
+            <div id="level">0</div>
+
+            <div>HP:</div>
+            <div id="playerHealthBar" class="health-bar"></div>
+            <div id="playerHealthBarBoarder"></div>
+
+            <div>Mana:</div>
+            <div id="playerManaBar" class="health-bar"></div>
+            <div id="playerManaBarBorder"></div>
+
+        </div>
+        <div id="audio">
+            <audio id="soundTrack" src="../assets/audio/makai-symphony-dragon-slayer.mp3"></audio>
+            <button id="soundTrack" type="button"></button>
+        </div>
+
+        <label for="enemyHealthBar" id="enemyName"></label>
+        <div id="enemyHealthBar" class="health-bar"></div>
+        <div id="enemyHealthBarBorder"></div>
+
+        <div id="hudAbilityBtns">
+            <button id="abilityBtnPass">Pass</button>
+            <button id="abilityBtn1">...</button>
+            <button id="abilityBtn2">....</button>
+            <button id="abilityBtn3">...</button>
+            <button id="abilityBtnUlt">...</button>
+        </div>
+
+        <button id="quitBtn">SURRENDER</button>
+
+    </div>
+
+    <canvas id="gameCanvas"></canvas>
+
+    <script type="module" src="/src/game/ui/hud.js"></script>
+    <script type="module" src="/src/game/gameEngine.js"></script>
+    <script type="module" src="/src/main.js"></script>
+</body>
+
+</html>

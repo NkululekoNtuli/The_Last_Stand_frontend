@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/styles.css">
+    <title>The-Last-Stand</title>
+</head>
+
+<body>
+    <h1>Register</h1>
+
+    <div style="max-width:520px;margin:28px auto">
+        <div class="card">
+            <h2>Create an account</h2>
+            <form id="registerForm" method="POST" class="form-grid">
+                <label class="label">Username</label>
+                <input id="username" name="username" type="text" required class="input" placeholder="e.g. sunny_joe">
+
+                <label class="label">Password</label>
+                <input id="password1" name="password1" type="password" required class="input"
+                    placeholder="Choose a strong password">
+
+                <label class="label">Confirm Password</label>
+                <input id="password2" name="password2" type="password" required class="input"
+                    placeholder="Re-enter your password">
+
+                <div class="form-actions">
+                    <button id="registerBtn" class="btn" type="submit">Sign up</button>
+                    <a href="/pages/login.html" class="ghost">Already have an account?</a>
+                </div>
+            </form>
+        </div>
+    </div>
+    <script type="module" src="/src/auth/authentication.js"></script>
+    <script type="module" src="/src/api/api.js"></script>
+</body>
+
+</html>

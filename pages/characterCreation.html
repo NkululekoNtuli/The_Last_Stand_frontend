@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>The Last Stand</title>
+    <link rel="stylesheet" href="/styles.css">
+</head>
+
+<body>
+    <div id="characterView">
+        <form id="characterForm">
+            <h1>Hero Creation</h1>
+            <label for="name">Enter hero name</label>
+            <input id="name" name="name" type="text">
+            <!-- <input id="abilities" type="text" value="Atomic Blast,World Cutting Slash,Laser Beam"> -->
+            <br>
+            <label for="passive">Choose your Passive Ability</label>
+            <select id="passive" name="abilities">
+                <option>--SELECT ABILITY--</option>
+            </select>
+            <br>
+            <label for="ultimate">Choose your Ultimate Ability</label>
+            <select id="ultimate" name="abilities">
+                <option>--SELECT ABILITY--</option>
+            </select>
+            <br>
+            <label for="ability-1">Choose your Primary Ability</label>
+            <select id="ability-1" name="abilities">
+                <option>--SELECT ABILITY--</option>
+            </select>
+            <br>
+            <label for="ability-2">Choose your Secondary Ability</label>
+            <select id="ability-2" name="abilities">
+                <option>--SELECT ABILITY--</option>
+            </select>
+            <br>
+            <label for="ability-3">Choose your a second Secondary Ability</label>
+            <select id="ability-3" name="abilities">
+                <option>--SELECT ABILITY--</option>
+            </select>
+            <div>
+                <button id="characterBtn" type="submit">Save</button>
+                <button id="cancelBtn" type="button">Cancel</button>
+            </div>
+        </form>
+
+
+        <canvas id="characterCanvas"></canvas>
+    </div>
+
+    <script type="module" src="/src/game/characterCreation.js"></script>
+    <script type="module" src="/src/api/api.js"></script>
+    <!-- <script type="module" src="/src/characterView.js"></script> -->
+</body>
+
+</html>
