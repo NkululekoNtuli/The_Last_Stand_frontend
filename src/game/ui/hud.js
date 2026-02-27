@@ -6,16 +6,14 @@ const enemyHealth = "enemyHealth";
 const enemyMana = "enemyMana";
 const playerHealth = "playerHealth";
 const playerMana = "playerMana";
-// const abilityBtnPass = "abilityBtnPass";
-// const abilityBtn1 = "abilityBtn1";
-// const abilityBtn2 = "abilityBtn2";
-// const abilityBtn3 = "abilityBtn3";
-// const abilityBtnUlt = "abilityBtnUlt";
-// const quitBtn = "quitBtn";
-const HUD_BUTTONS = ["abilityBtnPass", "abilityBtn1", "abilityBtn2", "abilityBtn3", "abilityBtnUlt", "quitBtn"]
+const audio = "audio";
+const soundTrack = document.getElementById("soundTrackAudio");
+const HUD_BUTTONS = ["abilityBtnPass", "abilityBtn1", "abilityBtn2", "abilityBtn3", "abilityBtnUlt", "quitBtn", "soundTrackBtn"];
 
-initHUD();
 
+document.addEventListener("DOMContentLoaded", () => {
+    initHUD();
+});
 function initHUD() {
 
     //Naming player fields
@@ -33,53 +31,73 @@ function initHUD() {
         setText("abilityBtnUlt", abilities[1]?.name);
     }
 
+    // soundTrack.play();
     bindHudButtons(HUD_BUTTONS);
+
 }
 
 
 async function hookButton(id) {
+
     const btn = document.getElementById(id);
 
     if (!btn) {
         return null;
     } else if (!id.includes("ability")) {
+        console.log("testing3");
         hookNonAbilityButton(btn);
+    } else {
+        btn.addEventListener("click", async (e) => {
+            e.preventDefault();
+
+            // btn.disabled = true;
+            HUD_BUTTONS.forEach(disableBtn);
+            // alert("what button is this")
+            const state = await executAbility(btn.textContent,);
+
+            updateHUD(state, playerMana);
+            await triggerAnimation(btn.textContent, "1");
+            // alert("state: " + JSON.stringify(state));
+            updateHUD(state, enemyHealth);
+            // await triggerAnimation(state.enemyAbilityUsed, "2"); // fix animation mapping
+
+            updateHUD(state, playerHealth);
+            // updateHUD(state, enemyMana);
+            // btn.disabled = false;
+            HUD_BUTTONS.forEach(enableBtn);
+
+            gameVictor(state);
+        });
     }
-
-    btn.addEventListener("click", async (e) => {
-        e.preventDefault();
-
-        // btn.disabled = true;
-        HUD_BUTTONS.forEach(disableBtn);
-        // alert("what button is this")
-        const state = await executAbility(btn.textContent,);
-
-        updateHUD(state, playerMana);
-        await triggerAnimation(btn.textContent, "1");
-        // alert("state: " + JSON.stringify(state));
-        updateHUD(state, enemyHealth);
-        // await triggerAnimation(state.enemyAbilityUsed, "2"); // fix animation mapping
-
-        updateHUD(state, playerHealth);
-        // updateHUD(state, enemyMana);
-        // btn.disabled = false;
-        HUD_BUTTONS.forEach(enableBtn);
-
-        gameVictor(state);
-    });
-
 }
 
-function disableBtn(id) {
-    const btn = document.getElementById(id);
-    btn.disabled = true;
-}
+function hookNonAbilityButton(btn) {
 
-function enableBtn(id) {
-    const btn = document.getElementById(id);
-    btn.disabled = false;
-}
+    if (btn.id === "quitBtn") {
+        btn.addEventListener("click", () => {
+            window.location.href = "/pages/dashBoard.html";
+        });
+    } else if (btn.id === "soundTrackBtn") {
+        console.log("testing2");
+        const soundTrack = document.getElementById("soundTrackAudio");
+        // soundTrack.loop = true;
 
+        btn.addEventListener("click", () => {
+
+            console.log(soundTrack.paused);
+            if (soundTrack.paused) {
+                soundTrack.play().catch(err => console.log("Play blocked:", err));
+                btn.textContent = "⏸️";
+            } else {
+                soundTrack.pause();
+                btn.textContent = "▶️";
+            }
+        });
+
+    } else {
+        console.log("Audio elements not found!2" + btn.id);
+    }// add other hub elements later
+}
 
 function updateHUD(state, target) {
     //1 = player
@@ -98,14 +116,6 @@ function updateHUD(state, target) {
         updateHealthBar("playerManaBar", (state.playerMana / state.playerMaxMana) * 100);
         // updateHealthBar("enemyHealthBar", (state.enemyHP / state.enemyMaxHP) * 100);
     }
-}
-
-function hookNonAbilityButton(btn) {
-    if (btn.id === "quitBtn") {
-        btn.addEventListener("click", () => {
-            window.location.href = "/pages/dashBoard.html";
-        });
-    } // add other hub elements later
 }
 
 
@@ -153,17 +163,15 @@ function updateHealthBar(elementId, healthPercent) {
     bar.style.width = healthPercent + "%";
 }
 
-function soundHandler() {
-    const soundTrack = document.getElementById("soundTrack");
-    if (soundTrack.paused) {
-        soundTrack.volume = 0.2;
-        soundTrack.loop = true;
-        soundTrack.play();
-    }
 
-    // { once: true }
-    //make sound track fade in later
+function disableBtn(id) {
+    const btn = document.getElementById(id);
+    btn.disabled = true;
+}
 
+function enableBtn(id) {
+    const btn = document.getElementById(id);
+    btn.disabled = false;
 }
 
 function gameVictor(state) {
