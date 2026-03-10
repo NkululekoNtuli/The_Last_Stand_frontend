@@ -286,9 +286,30 @@ canvas#gameCanvas {
     grid-row: 1;
 }
 
+#heroTable {
+    width: 100%;
+    font-family: 'Times New Roman', Times, serif;
+    text-align: left;
+    padding-top: 4px;
+    padding-left: 10%;
+}
+
+#heroTable th {
+    /* background: #222; */
+    color: white;
+    padding: 10px;
+    /* text-align: center; */
+}
+
+
 #heroInfoContainer {
     grid-column: 2;
     grid-row: 1;
+    display: table;
+}
+
+#heroName {
+    padding-left: 10%;
 }
 
 #createHero {

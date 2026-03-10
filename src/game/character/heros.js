@@ -65,27 +65,16 @@ async function populateUserHeroes() {
 }
 
 function parsHeroInfo(hero) {
-    const heroName = document.getElementById("heroName");
-    const heroInfo = document.getElementById("heroInfo");
 
-    heroName.innerHTML = "";
-    heroInfo.innerHTML = "";
-
-    heroName.innerHTML = hero.name;
-    heroInfo.innerHTML = `
-    STATS:
-      HEALTH           :        |${hero.health}
-      MANA             :        |${hero.mana}
-    -------------------------------------------------------------
-    ABILITIES:
-      PASSIVE ABILITY  :        |${hero.passiveAbility}
-      PRIMARY ABILITY  :        |${hero.primaryAbility}
-      SECONDARY ABILITY:        |${hero.secondaryAbility}
-      TERTIARY ABILITY :        |${hero.tertiaryAbility}
-      ULTIMATE ABILITY :        |${hero.ultimateAbility}
-    -------------------------------------------------------------
-    HISTORY:
-      WINS             :        |${hero.wins}
-      LOSES            :        |${hero.loses}` // put in tabel later and user ability icons
+    const heroName = document.getElementById("heroName").innerHTML = hero.name;
+    const heroHealth = document.getElementById("health").innerHTML = hero.health;
+    const heroMana = document.getElementById("mana").innerHTML = hero.mana;
+    const heroPassive = document.getElementById("passive").innerHTML = hero.passiveAbility;
+    const heroPrimary = document.getElementById("primary").innerHTML = hero.primaryAbility;
+    const heroSecondary = document.getElementById("secondary").innerHTML = hero.secondaryAbility;
+    const heroTertiary = document.getElementById("tertiary").innerHTML = hero.tertiaryAbility;
+    const heroUlt = document.getElementById("ultimate").innerHTML = hero.ultimateAbility;
+    const heroWins = document.getElementById("wins").innerHTML = hero.wins;
+    const heroLoses = document.getElementById("loses").innerHTML = hero.wins;
 }
 
