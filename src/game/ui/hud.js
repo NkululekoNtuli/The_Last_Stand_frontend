@@ -102,20 +102,24 @@ function hookNonAbilityButton(btn) {
 function updateHUD(state, target) {
     //1 = player
     if (target === playerHealth) {
-        console.log("player hp: " + state.playerHP + " and  player max hp " + state.playerMaxHP);
-        updateHealthBar("playerHealthBar", (state.playerHP / state.playerMaxHP) * 100);
+        // console.log("player hp: " + state.playerHP + " and  player max hp " + state.playerMaxHP);
+        updateBar("playerHealthBar", state.playerHP, state.playerMaxHP);
+        // updateBar("playerHealthBar", (state.playerHP / state.playerMaxHP) * 100);
     } else if (target === playerMana) {
-        updateHealthBar("playerManaBar", (state.playerMana / state.playerMaxMana) * 100);
+        updateBar("playerManaBar", state.playerMana, state.playerMaxHP);
     } else if (target === enemyHealth) {
-        updateHealthBar("enemyHealthBar", (state.enemyHP / state.enemyMaxHP) * 100);
+        updateBar("enemyHealthBar", state.enemyHP, state.enemyMaxHP);
     } else if (target === enemyMana) {
         // updateHealthBar("enemyHealthBar", (state.enemyHP / state.enemyMaxHP) * 100); impliment when enemy mana exist
     } else {
-        console.log("player manna: " + state.playerMana + " and  player max mana " + state.playerMaxMana);
+        // console.log("player manna: " + state.playerMana + " and  player max mana " + state.playerMaxMana);
 
-        updateHealthBar("playerManaBar", (state.playerMana / state.playerMaxMana) * 100);
+        // updateBar("playerManaBar", (state.playerMana / state.playerMaxMana) * 100);
+        updateBar("playerManaBar", state.playerMana, state.playerMaxHP);
         // updateHealthBar("enemyHealthBar", (state.enemyHP / state.enemyMaxHP) * 100);
     }
+
+    document.getElementById("level").textContent = state.playerLevel;
 }
 
 
@@ -148,19 +152,18 @@ function getPlayerAbilities() {
 }
 
 
-function updateHealthBar(elementId, healthPercent) {
+function updateBar(elementId, barValue, max) {
     // healthPercent = playerHealth - healthPercent;
-    console.log("hp % : " + healthPercent + "for element: " + elementId);
+    // console.log("hp % : " + healthPercent + "for element: " + elementId);
     const bar = document.getElementById(elementId);
+
     if (!bar) {
         console.log("no such bar : " + elementId);
         return;
     }
 
-    // Prevent values outside 0–100
-    // healthPercent = Math.max(0, Math.min(100, healthPercent));
-
-    bar.style.width = healthPercent + "%";
+    const percent = (barValue / max) * 100;
+    bar.style.width = percent + "%";
 }
 
 
