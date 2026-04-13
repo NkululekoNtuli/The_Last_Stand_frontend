@@ -51,7 +51,7 @@ function loadEnvironment() {
 function loadCharacters() {
     const loader = new GLTFLoader();
 
-    loader.load("/models/Hero.gltf", (gltf) => {
+    loader.load("/models/Hero_m.gltf", (gltf) => {
         const hero = gltf.scene;
         hero.position.set(-80, 4, 400);
         hero.scale.set(20, 20, 20);

@@ -183,16 +183,16 @@ function gameVictor(state) {
     const enemyHp = state.enemyHP;
     const enemyMana = state.enemyMana;
 
-    if (playerHp < 0) {
+    if (playerHp <= 0) {
         alert("You have been slain!")
         window.location.href = "heros.html";
-    } else if (playerMana < 0) {
+    } else if (playerMana <= 0) {
         alert("You ran out of mana");
         window.location.href = "heros.html";
-    } else if (enemyHp < 0) {
+    } else if (enemyHp <= 0) {
         alert("You win!");
         window.location.href = "heros.html";
-    } else if (enemyMana < 0) {
+    } else if (enemyMana <= 0) {
         alert("Your endurance knows no bounds!")
         window.location.href = "heros.html";
     }

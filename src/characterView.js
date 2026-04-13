@@ -31,7 +31,7 @@ function init() {
 
     // LOAD HERO
     const loader = new GLTFLoader();
-    loader.load('/models/Hero.gltf', (gltf) => {
+    loader.load('/models/Hero_m.gltf', (gltf) => {
         hero = gltf.scene;
         hero.position.set(-13, 0, 70);
         hero.scale.set(22, 22, 22);

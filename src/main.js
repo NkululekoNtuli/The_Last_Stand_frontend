@@ -104,7 +104,7 @@ function init() {
 
 
 
-    loader.load('/models/Hero.gltf', (gltf) => {
+    loader.load('/models/Hero_m.gltf', (gltf) => {
         hero = gltf.scene;
 
         hero.traverse((child) => {
@@ -116,7 +116,7 @@ function init() {
         });
 
         hero.position.set(-80, -26, 330);
-        hero.scale.set(30, 30, 30)
+        hero.scale.set(0.35, 0.35, 0.35)
         hero.rotation.set(0, -3.5, 0)
 
         scene.add(hero);
@@ -136,7 +136,7 @@ function init() {
             });
 
             // Setting idle as default
-            heroCurrentAction = heroActions["idle-1"];
+            heroCurrentAction = heroActions["idle"];
             heroCurrentAction.play();
         }
 
@@ -155,7 +155,7 @@ function init() {
         });
 
         enemy.position.set(100, -10, 100);
-        enemy.scale.set(80, 80, 80)
+        enemy.scale.set(90, 90, 90)
         enemy.rotation.set(0, -0.5, 0)
         scene.add(enemy);
 
